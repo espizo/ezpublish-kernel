@@ -143,7 +143,7 @@ abstract class AbstractServiceTest extends TestCase
      *
      * @param string $method
      * @param array $arguments
-     * @param bool $return
+     * @param mixed|null $return
      * @param int $languageArgumentIndex From 0 and up, so the array index on $arguments.
      */
     final public function testForLanguagesLookup($method, array $arguments, $return, $languageArgumentIndex, callable $callback = null, int $alwaysAvailableArgumentIndex = null)
@@ -183,7 +183,7 @@ abstract class AbstractServiceTest extends TestCase
         $actualReturn = $this->service->$method(...$arguments);
 
         if ($return) {
-            $this->assertTrue($actualReturn);
+            $this->assertEquals($return, $actualReturn);
         }
     }
 
@@ -210,7 +210,7 @@ abstract class AbstractServiceTest extends TestCase
      *
      * @param string $method
      * @param array $arguments
-     * @param bool $return
+     * @param mixed|null $return
      * @param int $languageArgumentIndex From 0 and up, so the array index on $arguments.
      */
     final public function testForLanguagesPassTrough($method, array $arguments, $return, $languageArgumentIndex, callable $callback = null, int $alwaysAvailableArgumentIndex = null)
@@ -245,7 +245,7 @@ abstract class AbstractServiceTest extends TestCase
         $actualReturn = $this->service->$method(...$arguments);
 
         if ($return) {
-            $this->assertTrue($actualReturn);
+            $this->assertEquals($return, $actualReturn);
         }
     }
 }
